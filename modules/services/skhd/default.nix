@@ -37,6 +37,9 @@ in
 
       serviceConfig.ProgramArguments = [ "${cfg.package}/bin/skhd" ]
         ++ optionals (cfg.skhdConfig != "") [ "-c" "/etc/skhdrc" ];
+      serviceConfig.EnvironmentVariables = {
+        "SHELL" = "/bin/sh";
+      };
       serviceConfig.KeepAlive = true;
       serviceConfig.ProcessType = "Interactive";
     };
